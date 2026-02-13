@@ -5,10 +5,6 @@
 -- =====================================================
 
 
--- =====================================================
--- OVERALL BUSINESS KPIs
--- =====================================================
-
 -- 1. Total Sales
 SELECT SUM(sales) AS total_sales
 FROM superstore;
@@ -63,12 +59,7 @@ SELECT
 FROM superstore;
 
 
-
--- =====================================================
--- CATEGORY LEVEL KPIs
--- =====================================================
-
--- Sales & Profit by Category
+-- 11. Sales & Profit by Category
 SELECT 
     category,
     SUM(sales) AS total_sales,
@@ -78,7 +69,7 @@ GROUP BY category
 ORDER BY total_sales DESC;
 
 
--- Orders by Category
+-- 12. Orders by Category
 SELECT 
     category,
     COUNT(DISTINCT order_id) AS total_orders
@@ -87,7 +78,7 @@ GROUP BY category
 ORDER BY total_orders DESC;
 
 
--- Customers by Category
+-- 13. Customers by Category
 SELECT 
     category,
     COUNT(DISTINCT customer_id) AS total_customers
@@ -96,10 +87,29 @@ GROUP BY category
 ORDER BY total_customers DESC;
 
 
--- Profit Margin by Category
+-- 14. Profit Margin by Category
 SELECT 
     category,
     (SUM(profit) / SUM(sales)) * 100 AS profit_margin_percent
 FROM superstore
 GROUP BY category
+ORDER BY profit_margin_percent DESC;
+
+
+-- 15. Sales & Profit per State
+SELECT 
+    state,
+    SUM(sales) AS total_sales,
+    SUM(profit) AS total_profit
+FROM superstore
+GROUP BY state
+ORDER BY total_sales DESC;
+
+
+-- 16. Profit Margin per State
+SELECT 
+    state,
+    (SUM(profit) / SUM(sales)) * 100 AS profit_margin_percent
+FROM superstore
+GROUP BY state
 ORDER BY profit_margin_percent DESC;
