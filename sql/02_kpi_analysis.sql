@@ -106,7 +106,7 @@ GROUP BY state
 ORDER BY total_sales DESC;
 
 
--- 16. Profit Margin per State
+-- 16. Profit Margin Per State
 SELECT 
     state,
     (SUM(profit) / SUM(sales)) * 100 AS profit_margin_percent
